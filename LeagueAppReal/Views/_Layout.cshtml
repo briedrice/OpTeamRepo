@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Team Meet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="@ViewData["Description"]" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootswatch/cosmo/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    
+    
+</head>
+<body>
+    <div id="sidebar">
+        <div class="Title"><h1>Team Meet</h1></div>
+        <ul class="nav">
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Home" asp-action="LeagueofLegends">League of Legends</a></li>
+        </ul>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <button id="sidebarToggle" class="btn btn-primary"><i class="fa fa-angle-left fa-lg"></i></button>
+                    </li>
+                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">TestBrand</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="" class="btn btn-sm">
+                            <i class="fa fa-sign-in"></i> Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+       
+        <main>
+            @RenderBody()
+        </main>
+        <div id="footer">
+          
+                <span class="moveRight">&copy; @DateTime.Now.Year - LeagueAppReal</span>
+          
+        </div>
+    </div>
+  
+
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,115 @@
+/*html, body {
+    height: 100%;
+    font: 16px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 0;
+}*/
+
+
+.Title {
+    margin: 15px;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: #9d9d9d;
+}
+
+#main {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: block;
+}
+
+#sidebar {
+    background: #333;
+    color: #eee;
+    position: fixed;
+    width: 250px;
+    overflow: hidden;
+    left: 0;
+    height: 100%;
+    -moz-transition: left ease .25s;
+    -o-transition: left ease .25s;
+    -webkit-transition: left ease .25s;
+    transition: left ease .25s;
+}
+
+#wrapper {
+    margin-left: 250px;
+    height: 100%;
+    -moz-transition: margin-left ease .25s;
+    -o-transition: margin-left ease .25s;
+    -webkit-transition: margin-left ease .25s;
+    transition: margin-left ease .25s;
+}
+
+header {
+    background-color: #080808;
+}
+
+nav a {
+    color: #9d9d9d;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0.7em 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 1em;
+}
+
+    nav li:first-child {
+        font-size: 1.3em;
+        margin-left: 0;
+    }
+
+main {
+    padding: 2rem 0;
+    display: block;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    padding: 8px 5px;
+    background: #2780e3;
+    width: 100%;
+    color: #eee;
+}
+
+/* Changes the layout of the header on small screens */
+@media only screen and (max-width: 640px) {
+    header ul {
+        text-align: center;
+    }
+
+    header li:first-child {
+        display: block;
+    }
+}
+
+.margin-bottom20 {
+    margin-bottom: 20px;
+}
+
+#sidebar.hide-sidebar {
+    left: -250px;
+    -moz-transition: left ease .25s;
+    -o-transition: left ease .25s;
+    -webkit-transition: left ease .25s;
+    transition: left ease .25s;
+}
+
+#wrapper.hide-sidebar {
+    margin-left: 0px;
+    -moz-transition: margin-left ease .25s;
+    -o-transition: margin-left ease .25s;
+    -webkit-transition: margin-left ease .25s;
+    transition: margin-left ease .25s;
+}

@@ -1,0 +1,24 @@
+﻿@model LeagueAppReal.Models.SummonerViewModel
+@{
+    //ViewData["Title"] = "League of Legends";
+    ViewData["Description"] = "League Stats";
+}
+<div class="text-center">
+    <h2>LOL STATS</h2>
+    <form method="post">
+        <div class="form-group col-sm-6 col-md-offset-3">
+            <div class="col-sm-12   margin-bottom20">
+                <input asp-for="SummonerName" placeholder="Summoner Name" class="form-control">
+                <small id="summonerHelp" class="form-text text-muted">Teemo Mains Only</small><br />
+            </div>
+           
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @*Insert any script tags for this page here*@
+}
