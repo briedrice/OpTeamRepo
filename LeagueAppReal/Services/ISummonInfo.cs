@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeagueAppReal.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,6 @@ namespace LeagueAppReal.Services
 {
     public interface ISummonInfo
     {
-        void GetSummonerInfo(string summonerInfo, string api);
+        void GetSummonerInfo(string summonerInfo, string api, SummonerViewModel model);
     }
 }

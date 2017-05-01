@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using LeagueAppReal.Services;
 using Microsoft.Extensions.Configuration;
 using LeagueAppReal.Models.Context;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LeagueAppReal.Controllers
 {
@@ -31,15 +32,16 @@ namespace LeagueAppReal.Controllers
             return View(people);
         }
 
-        public IActionResult LeagueofLegends()
-        {
-            return View();
-        }
-
-        [HttpPost]
         public IActionResult LeagueofLegends(SummonerViewModel model)
         {
-            _summonerInfo.GetSummonerInfo(model.SummonerName, _config["ApiKey:Key"]);
+            _summonerInfo.GetSummonerInfo(model.SummonerName, _config["ApiKey:Key"], model);
+            return View(model);
+        }
+
+        [Authorize]
+        public IActionResult Profile(SummonerViewModel model)
+        {
+            _summonerInfo.GetSummonerInfo(model.SummonerName, _config["ApiKey:Key"], model);
 
             return View();
         }

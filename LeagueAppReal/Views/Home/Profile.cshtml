@@ -1,0 +1,24 @@
+﻿@model LeagueAppReal.Models.SummonerViewModel
+@{
+    //ViewData["Title"] = "League of Legends";
+    ViewData["Description"] = "Profile";
+}
+@if (Model.SummonerName == null)
+{
+    foreach (var champion in Model.Champions)
+    {
+        champion.Name.ToString();
+    }
+}
+else
+{
+    <div class="text-center">
+        <h2>Profile</h2>
+        <a asp-controller="Home" asp-action="LeagueofLegends" class="btn btn-lg btn-success">Look up</a>
+    </div>
+}
+
+
+@section Scripts {
+    @*Insert any script tags for this page here*@
+}

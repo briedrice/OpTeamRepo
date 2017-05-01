@@ -113,3 +113,18 @@ main {
     -webkit-transition: margin-left ease .25s;
     transition: margin-left ease .25s;
 }
+
+.profile-widget {
+    background-color:#eee;
+    padding:20px;
+}
+
+.no-padding {
+    padding: 0px;
+}
+.no-margin {
+    margin:0px;
+}
+.bold {
+    font-weight:bold;
+}
