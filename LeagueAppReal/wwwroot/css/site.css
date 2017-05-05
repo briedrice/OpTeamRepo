@@ -128,3 +128,16 @@ main {
 .bold {
     font-weight:bold;
 }
+
+.margin-bottom0 {
+    margin-bottom  :0;
+}
+
+.bg-lose {
+    
+    background-color:rgba(230,102,123,0.8);
+}
+
+.bg-win {
+    background-color:rgba(73,196,224,0.8);
+}

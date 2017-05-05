@@ -1,4 +1,6 @@
-﻿using RiotSharp.LeagueEndpoint;
+﻿using RiotSharp.GameEndpoint;
+using RiotSharp.LeagueEndpoint;
+using RiotSharp.MatchEndpoint;
 using RiotSharp.StaticDataEndpoint;
 using System;
 using System.Collections.Generic;
@@ -20,14 +22,28 @@ namespace LeagueAppReal.Models
 
         //Static Data
         public Dictionary<string, ChampionStatic>.ValueCollection Champions { get; set; }
-    }
 
+        //matchHistory
+        public List<GameEntity> MatchList { get; set; }
+    }
+    public class GameEntity {
+        public int Kills { get; set; }
+        public List<RiotSharp.GameEndpoint.Player> Players { get; set; }
+        public int Assist { get; set; }
+        public int Deaths { get; set; }
+        public string ChampName {get; set;}
+        public string ChampPicture { get; set; }
+        public bool win { get; set; }
+        public string Kda { get; set; }
+        public RiotSharp.MapType Map { get; set; }
+        public string SummonerSpell1 { get; set; }
+        public string SummonerSpell2 { get; set; }
+    }
     public class LeagueInfo
     {
         public RiotSharp.LeagueEndpoint.Enums.Tier? Tier { get; set; }
         public string TierName { get; set; }
         public RiotSharp.Queue GameMode { get; set; }
-        
         public List<LeagueEntry> AEntry { get; set; }
         public string RankIcon { get; set; }
         public int? Wins { get; set; }
@@ -35,32 +51,6 @@ namespace LeagueAppReal.Models
         public string Division { get; set; }
         public int LeaguePoints { get; set; }
     }
-    //public enum RankIcon {
-    //    bronze_1,
-    //    bronze_2,
-    //    bronze_3,
-    //    bronze_4,
-    //    bronze_5,
-    //    silver_1,
-    //    silver_2,
-    //    silver_3,
-    //    silver_4,
-    //    silver_5,
-    //    gold_1,
-    //    gold_2,
-    //    gold_3,
-    //    gold_4,
-    //    gold_5,
-    //    platinum_1,
-    //    platinum_2,
-    //    platinum_3,
-    //    platinum_4,
-    //    platinum_5,
-    //    diamond_1,
-    //    diamond_2,
-    //    diamond_3,
-    //    diamond_4,
-    //    diamond_5,
-    //}
+   
     
 }
