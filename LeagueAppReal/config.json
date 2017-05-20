@@ -1,6 +1,6 @@
 ﻿{
     "ApiKey": {
-        "Key": "RGAPI-C3404337-619A-4566-8EC9-D88B5C5EAEFD"
+        "Key": "RGAPI-58a52147-69c7-467b-8eec-9b09f54b0b51"
     },
     "ConnectionStrings": {
         "OpTeamContextConnection" :  "Server=(localdb)\\MSSQLLocalDB;Database=OpTeamDB;Trusted_Connection=true;MultipleActiveResultSets=true;"

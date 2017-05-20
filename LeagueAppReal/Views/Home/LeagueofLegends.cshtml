@@ -1,123 +1,22 @@
-﻿@model LeagueAppReal.Models.SummonerViewModel
+﻿@model LeagueAppReal.Models.ViewModels.SummonerViewModel
 @{
     //ViewData["Title"] = "League of Legends";
     ViewData["Description"] = "League Stats";
 }
 
-@if (Model.SummonerName != null)
-{
-    <div class="container">
-        <div class="col-md-5 profile-widget">
-
-            <div class="col-md-12 no-padding">
-                <div class="col-md-4"><img src="@Model.SummonerIcon" alt="Profile Icon" class="img-responsive"></div>
-                <div class="col-md-8">
-                    <div><h2 class="no-margin bold">@Model.SummonerName</h2></div><hr />
-                    <div>Level: @Model.SummonerLevel</div>
-                    <div>Region: @Model.SummonerRegion.ToString().ToUpper()</div>
-                </div>
-
-
-
-            </div>
-            <div class="col-md-12 no-padding">
-
-                <div class="col-md-12">
-                    <h3>Game Mode</h3>
-                    <ul class="nav nav-tabs">
-
-                        @foreach (var league in Model.League)
-                        {
-                        <li><a data-toggle="tab" href="#@league.GameMode">@league.GameMode</a></li>
-                        }
-
-                    </ul>
-
-                    <div class="tab-content">
-
-                        @foreach (var league in Model.League)
-                        {
-                        <div id="@league.GameMode" class="tab-pane fade in">
-                            <div class="col-md-6">
-                                <h3 class="bold">@league.Tier @league.Division </h3>
-                                <span>
-                                    Wins:@league.Wins Losses: @league.Losses
-                                </span>
-                                <p>@league.TierName</p>
-                                <p>@league.GameMode</p>
-                            </div>
-                            <div class="col-md-6">
-                                <img src="@league.RankIcon.ToString().ToLower()" alt="Rank Icon" class="img-responsive">
-                            </div>
-                        </div>
-                        }
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-md-7">
-
-            @foreach (var game in Model.MatchList)
-            {
-                {
-                    var winning = game.win == true ? "bg-win" : "bg-lose";
-
-                    <div class="col-md-12 well @winning">
-                        <div class="col-md-2">
-                            <div><img src="@game.ChampPicture" alt="Profile Icon" class="img-responsive img-circle" width="80"></div>
-                            <h5 class="text-center margin-bottom0">@game.ChampName</h5>
-                        </div>
-                        <div class="col-md-3">
-                            <div>
-                                @game.Map
-                            </div>
-                            <div class="bold">
-                                <span style="color:#2780e3">@game.Kills</span> / @game.Assist / @game.Deaths
-                            </div>
-                            <div>
-                                KDA <span class="bold">@game.Kda</span>
-                            </div>
-                            
-                            <div>
-                                <img src="@game.SummonerSpell1" alt="Profile Icon" class="" width="30">
-                                <img src="@game.SummonerSpell2" alt="Profile Icon" class="" width="30">
-                            </div>
-                        </div>
-
-
+        <div class="text-center">
+            <h2>LOL STATS</h2>
+            <form method="post">
+                <div class="form-group col-sm-6 col-md-offset-3">
+                    <div class="col-sm-12   margin-bottom20">
+                        <input asp-for="SummonerName" placeholder="Summoner Name" class="form-control" name="SummonerName">
+                        <small id="summonerHelp" class="form-text text-muted">Teemo Mains Only</small><br />
                     </div>
 
-
-                }
-            }
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
 
         </div>
-
-    </div>
-
-}
-else
-{
-    <div class="text-center">
-        <h2>LOL STATS</h2>
-        <form method="post">
-            <div class="form-group col-sm-6 col-md-offset-3">
-                <div class="col-sm-12   margin-bottom20">
-                    <input asp-for="SummonerName" placeholder="Summoner Name" class="form-control">
-                    <small id="summonerHelp" class="form-text text-muted">Teemo Mains Only</small><br />
-                </div>
-
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </form>
-
-    </div>
-}
-
-
-@section Scripts {
-    @*Insert any script tags for this page here*@
-}

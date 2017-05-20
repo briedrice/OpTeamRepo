@@ -10,6 +10,10 @@ using LeagueAppReal.Services;
 using Microsoft.Extensions.Configuration;
 using LeagueAppReal.Models.Context;
 using LeagueAppReal.Models.Seed;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using LeagueAppReal.Models;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Serialization;
 
 namespace LeagueAppReal
 {
@@ -48,7 +52,23 @@ namespace LeagueAppReal
 
             services.AddTransient<OpTeamSeedData>();
 
-            services.AddMvc();
+           
+            services.AddMvc(config => {
+                if (_env.IsProduction())
+                {
+                    config.Filters.Add(new RequireHttpsAttribute());
+                }
+            }).AddJsonOptions(config => {
+                config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+
+            services.AddIdentity<User, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            }).AddEntityFrameworkStores<OpTeamContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +83,13 @@ namespace LeagueAppReal
             }
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseIdentity();
+            app.UseMvc(config => {
+                config.MapRoute(
+                    name: "Default",
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Home", action = "Index" });
+            });
 
             seeder.EnsureSeedData().Wait();
         }

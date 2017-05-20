@@ -16,13 +16,28 @@
 <body>
     <div id="sidebar">
         <div class="Title"><h1>Team Meet</h1></div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="Title">
+                <i class="fa fa-user fa-3x" aria-hidden="true"></i>
+                <h3 style="text-transform: uppercase;">@User.Identity.Name</h3>
+
+            </div>
+        }
+       
         <ul class="nav">
             <li><a asp-controller="Home" asp-action="Index">Home</a></li>
             <li><a asp-controller="Home" asp-action="LeagueofLegends">League of Legends</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><a asp-controller="Home" asp-action="Team">Team</a></li>
+                <li><a asp-controller="Home" asp-action="Profile">Profile</a></li>
+            }
         </ul>
+
     </div>
     <div id="wrapper">
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse no-margin">
             <div class="container-fluid">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
@@ -30,30 +45,45 @@
                     </li>
                     <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">TestBrand</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="" class="btn btn-sm">
-                            <i class="fa fa-sign-in"></i> Login
-                        </a>
-                    </li>
-                </ul>
+                @if (User.Identity.IsAuthenticated)
+            {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a asp-controller="Auth" asp-action="Logout" class="btn btn-sm">
+                                <i class="fa fa-sign-in"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a asp-controller="Auth" asp-action="Login" class="btn btn-sm">
+                                <i class="fa fa-sign-in"></i> Login
+                            </a>
+                        </li>
+                    </ul>
+                }
+
             </div>
         </nav>
-       
-        <main>
+
+        <main class="no-padding">
             @RenderBody()
         </main>
         <div id="footer">
-          
-                <span class="moveRight">&copy; @DateTime.Now.Year - LeagueAppReal</span>
-          
+
+            <span class="moveRight">&copy; @DateTime.Now.Year - LeagueAppReal</span>
+
         </div>
     </div>
-  
 
+    <script src="~/lib/angular/angular.min.js"></script>
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

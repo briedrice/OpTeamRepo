@@ -1,4 +1,6 @@
-﻿using RiotSharp.GameEndpoint;
+﻿using RiotSharp;
+using RiotSharp.GameEndpoint;
+using RiotSharp.GameEndpoint.Enums;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.StaticDataEndpoint;
@@ -7,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LeagueAppReal.Models
+namespace LeagueAppReal.Models.ViewModels
 {
     public class SummonerViewModel
     {
@@ -17,9 +19,8 @@ namespace LeagueAppReal.Models
         public int SummonerIconId { get; set; }
         public long SummonerId { get; set; }
         public string SummonerIcon { get; set; }
-        public RiotSharp.Region SummonerRegion { get; set; }
+        public Region SummonerRegion { get; set; }
         public List<LeagueInfo> League { get; set; }
-
         //Static Data
         public Dictionary<string, ChampionStatic>.ValueCollection Champions { get; set; }
 
@@ -35,9 +36,20 @@ namespace LeagueAppReal.Models
         public string ChampPicture { get; set; }
         public bool win { get; set; }
         public string Kda { get; set; }
-        public RiotSharp.MapType Map { get; set; }
+        public MapType Map { get; set; }
         public string SummonerSpell1 { get; set; }
         public string SummonerSpell2 { get; set; }
+        public GameMode GameMode { get; set; }
+        public GameSubType GameSubType { get; set; }
+        public GameType GameType { get; set; }
+        public int ChampLevel { get; set; }
+        public string item0 { get; set; }
+        public string item1 { get; set; }
+        public string item2 { get; set; }
+        public string item4 { get; set; }
+        public string item5 { get; set; }
+        public string item6 { get; set; }
+        public string item3 { get; set; }
     }
     public class LeagueInfo
     {

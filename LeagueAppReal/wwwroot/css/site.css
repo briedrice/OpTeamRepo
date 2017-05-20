@@ -132,7 +132,9 @@ main {
 .margin-bottom0 {
     margin-bottom  :0;
 }
-
+.margin-bottom40 {
+    margin-bottom: 40px;
+}
 .bg-lose {
     
     background-color:rgba(230,102,123,0.8);
@@ -140,4 +142,17 @@ main {
 
 .bg-win {
     background-color:rgba(73,196,224,0.8);
+}
+
+.defaut-img {
+    background-color: rgba(0,0,0, 0.1);
+    width:35px;
+    height:35px;
+    overflow:hidden;
+}
+
+
+.defaut-img:before {
+  content: " ";
+  font-size: 1000px;
 }

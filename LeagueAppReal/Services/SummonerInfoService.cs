@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Newtonsoft;
 using LeagueAppReal.Models;
 using RiotSharp.LeagueEndpoint;
+using LeagueAppReal.Models.ViewModels;
 
 namespace LeagueAppReal.Services
 {
@@ -26,7 +27,7 @@ namespace LeagueAppReal.Services
 
             if (summonerName != null) {
 
-                GrabSummoner(myApi, model);
+                GrabSummoner(myApi, summonerName, model);
 
                 var champions = staticApi.GetChampions(Region.na, ChampionData.image).Champions.Values;
                 var summonerSpells = staticApi.GetSummonerSpells(Region.na, SummonerSpellData.image).SummonerSpells.Values;
@@ -34,7 +35,7 @@ namespace LeagueAppReal.Services
                 var rankedStats = myApi.GetStatsRanked(Region.na, model.SummonerId);
                 var summonerIdList = new List<long> { model.SummonerId };
                 var leagues = myApi.GetLeagues(Region.na, summonerIdList).FirstOrDefault().Value;
-
+                
                 GrabEntries(leagues, model);
                 
                 model.Champions = champions;
@@ -59,6 +60,26 @@ namespace LeagueAppReal.Services
                     double kda = (double)(game.Statistics.ChampionsKilled + game.Statistics.Assists) / (double)game.Statistics.NumDeaths;
                     theGame.Kda = kda.ToString("0.##");
                     theGame.Map = game.MapType;
+                    theGame.ChampLevel = game.Level;
+                    theGame.GameMode = game.GameMode;
+                    theGame.GameType = game.GameType;
+                    theGame.GameSubType = game.GameSubType;
+
+                    var item0Id = game.Statistics.Item0;
+                    var item1Id = game.Statistics.Item1;
+                    var item2Id = game.Statistics.Item2;
+                    var item3Id = game.Statistics.Item3;
+                    var item4Id = game.Statistics.Item4;
+                    var item5Id = game.Statistics.Item5;
+                    var item6Id = game.Statistics.Item6;
+
+                    theGame.item0 = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/item/" + item0Id + ".png";
+                    theGame.item1 = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/item/" + item1Id + ".png";
+                    theGame.item2 = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/item/" + item2Id + ".png";
+                    theGame.item3 = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/item/" + item3Id + ".png";
+                    theGame.item4 = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/item/" + item4Id + ".png";
+                    theGame.item5 = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/item/" + item5Id + ".png";
+                    theGame.item6 = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/item/" + item6Id + ".png";
 
                     var champId = game.ChampionId;
                     var champPlayed = champions.Where(x => x.Id == champId).First();
@@ -76,6 +97,7 @@ namespace LeagueAppReal.Services
                     theGame.SummonerSpell2 = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/spell/" + spell2.Image.Full;
                     matches.Add(theGame);
                 }
+
                 model.MatchList = matches;
                 var matchHistory23 = myApi.GetMatchListAsync(Region.na, model.SummonerId).Result;//player info
                 //var certainMatch = myApi.GetMatch(Region.na, 2489910377);
@@ -84,10 +106,10 @@ namespace LeagueAppReal.Services
                 
         }
 
-        public void GrabSummoner(IRiotApi myApi,SummonerViewModel model) {
+        public void GrabSummoner(IRiotApi myApi, string summonerName, SummonerViewModel model) {
             try
             {
-                var summoner = myApi.GetSummoner(Region.na, model.SummonerName);
+                var summoner = myApi.GetSummoner(Region.na, summonerName);
                 model.SummonerName = summoner.Name;
                 model.SummonerLevel = summoner.Level;
                 model.SummonerRegion = summoner.Region;

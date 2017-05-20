@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LeagueAppReal.Models;
 using Microsoft.AspNetCore.Mvc;
 using LeagueAppReal.Services;
 using Microsoft.Extensions.Configuration;
 using LeagueAppReal.Models.Context;
 using Microsoft.AspNetCore.Authorization;
+using LeagueAppReal.Models.ViewModels;
+using LeagueAppReal.Models;
 
 namespace LeagueAppReal.Controllers
 {
@@ -34,15 +35,31 @@ namespace LeagueAppReal.Controllers
 
         public IActionResult LeagueofLegends(SummonerViewModel model)
         {
-            _summonerInfo.GetSummonerInfo(model.SummonerName, _config["ApiKey:Key"], model);
+            if (model.SummonerName != null)
+            {
+                _summonerInfo.GetSummonerInfo(model.SummonerName, _config["ApiKey:Key"], model);
+                return View("LolStats", model);
+            }
+            else {
+
+                return View(model);
+            }
+            
+        }
+
+        public IActionResult LolStats(SummonerViewModel model) {
             return View(model);
         }
 
         [Authorize]
-        public IActionResult Profile(SummonerViewModel model)
+        public IActionResult Profile()
         {
-            _summonerInfo.GetSummonerInfo(model.SummonerName, _config["ApiKey:Key"], model);
+            return View();
+        }
 
+        [Authorize]
+        public IActionResult Team()
+        {
             return View();
         }
     }
