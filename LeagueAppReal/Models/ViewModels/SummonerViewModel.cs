@@ -4,6 +4,7 @@ using RiotSharp.GameEndpoint.Enums;
 using RiotSharp.LeagueEndpoint;
 using RiotSharp.MatchEndpoint;
 using RiotSharp.StaticDataEndpoint;
+using RiotSharp.SummonerEndpoint;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace LeagueAppReal.Models.ViewModels
     }
     public class GameEntity {
         public int Kills { get; set; }
-        public List<RiotSharp.GameEndpoint.Player> Players { get; set; }
+        public List<FellowSummoner> inGameSummonerName { get; set; }
         public int Assist { get; set; }
         public int Deaths { get; set; }
         public string ChampName {get; set;}
@@ -63,6 +64,12 @@ namespace LeagueAppReal.Models.ViewModels
         public string Division { get; set; }
         public int LeaguePoints { get; set; }
     }
-   
-    
+
+    public class FellowSummoner
+    {
+        public string champImg { get; set; }
+        public string champName { get; set; }
+        public string summonerName { get; set; }
+        public int teamId { get; set; }
+    }
 }

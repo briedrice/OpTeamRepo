@@ -27,14 +27,14 @@
 
     @*<div ng-controller="leagueController">
 
-        <div ng-init="init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model))">
+            <div ng-init="init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model))">
 
-            {{vm.hi}}
-        </div>
+                {{vm.hi}}
+            </div>
 
 
-    </div>*@
-    
+        </div>*@
+
     <div class="container">
         <div class="col-md-5 profile-widget">
 
@@ -114,25 +114,52 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                           
-                                <div>
-                                    <img src="@game.item0" class="defaut-img" width="30">
-                                    <img src="@game.item1" class="defaut-img" width="30">
-                                    <img src="@game.item2" class="defaut-img" width="30">
 
-                                    <img src="@game.item6" class="defaut-img" width="30">
-                                </div>
+                            <div>
+                                <img src="@game.item0" class="defaut-img" width="30">
+                                <img src="@game.item1" class="defaut-img" width="30">
+                                <img src="@game.item2" class="defaut-img" width="30">
 
-                                <div>
-                                    <img src="@game.item3" class="defaut-img" width="30">
-                                    <img src="@game.item4" class="defaut-img" width="30">
-                                    <img src="@game.item5" class="defaut-img" width="30">
-                                </div>
-                     
+                                <img src="@game.item6" class="defaut-img" width="30">
+                            </div>
 
-                            
+                            <div>
+                                <img src="@game.item3" class="defaut-img" width="30">
+                                <img src="@game.item4" class="defaut-img" width="30">
+                                <img src="@game.item5" class="defaut-img" width="30">
+                            </div>
+
                         </div>
-                        
+                        <div class="col-md-4 no-padding">
+                            <div class="col-md-6 no-padding">
+                                @foreach (var fellowSummoner in game.inGameSummonerName)
+                                {
+
+                                    @if (fellowSummoner.teamId == 100)
+                                    {
+                                        <div>
+                                            <img src="@fellowSummoner.champImg " class="" width="20"><span style="font-size:12px;">@fellowSummoner.champName</span>
+                                        </div>
+                                    }
+
+                                }
+                            </div>
+                            <div class="col-md-6 no-padding">
+                                @foreach (var fellowSummoner in game.inGameSummonerName)
+                                {
+
+
+                                    @if (fellowSummoner.teamId == 200)
+                                    {<div>
+
+                                <img src="@fellowSummoner.champImg " class="" width="20"><span style="font-size:12px;">@fellowSummoner.champName</span>
+                            </div>
+                                    }
+
+
+                                }
+                            </div>
+                        </div>
                     </div>
 
 
@@ -143,6 +170,6 @@
 
     </div>
 
-    
+
 
 </div>
